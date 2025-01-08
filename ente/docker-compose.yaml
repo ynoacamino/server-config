@@ -1,0 +1,37 @@
+services:
+  museum:
+    image: ghcr.io/ente-io/server
+    restart: unless-stopped
+    container_name: museum
+    healthcheck:
+      disable: true
+    depends_on:
+      - postgres-museum
+      - nginx-proxy
+      - docker-gen
+      - acme-companion
+    environment:
+      - ENTE_CREDENTIALS_FILE=/credentials.yaml
+      - VIRTUAL_HOST=ente.ynoacamino.site
+      - LETSENCRYPT_HOST=ente.ynoacamino.site
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    volumes:
+      - ./config-ente/museum.yaml:/museum.yaml:ro
+      - ./config-ente/credentials.yaml:/credentials.yaml:ro
+    networks:
+      - web-services
+
+  postgres-museum:
+    container_name: postgres-museum
+    image: postgres:15
+    environment:
+      POSTGRES_USER: pguser
+      POSTGRES_PASSWORD: pgpass
+      POSTGRES_DB: ente_db
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true
