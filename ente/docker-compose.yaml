@@ -5,11 +5,6 @@ services:
     container_name: museum
     healthcheck:
       disable: true
-    depends_on:
-      - postgres-museum
-      - nginx-proxy
-      - docker-gen
-      - acme-companion
     environment:
       - ENTE_CREDENTIALS_FILE=/credentials.yaml
       - VIRTUAL_HOST=ente.ynoacamino.site
@@ -31,6 +26,8 @@ services:
       POSTGRES_DB: ente_db
     networks:
       - web-services
+    volumes:
+      - ./data/:/var/lib/postgresql/data/
 
 networks:
   web-services:
