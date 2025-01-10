@@ -1,11 +1,11 @@
 services:
   uploader:
-    build:
-      context: ./ynoa-uploader/
+    image: ynoacamino/ynoa-uploader:latest
     container_name: uploader
     restart: unless-stopped
     healthcheck:
       disable: true
+    env_file: .env
     environment:
       - VIRTUAL_HOST=uploader.ynoacamino.site
       - LETSENCRYPT_HOST=uploader.ynoacamino.site
