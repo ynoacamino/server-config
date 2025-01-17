@@ -1,0 +1,19 @@
+services:
+  bot:
+    image: ynoacamino/ynoacamino-bot
+    restart: unless-stopped
+    container_name: bot
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=bot.ynoacamino.site
+      - LETSENCRYPT_HOST=bot.ynoacamino.site
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    env_file: .env
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true
