@@ -1,0 +1,21 @@
+services:
+  alert-server:
+    image: ynoacamino/ynoacamino-alert:v0.12
+    restart: unless-stopped
+    container_name: alert-server
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=alert-server.ynoacamino.site
+      - LETSENCRYPT_HOST=alert-server.ynoacamino.site
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    env_file: .env
+    volumes:
+      - ./data/:/usr/src/app/prisma/data/
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true
