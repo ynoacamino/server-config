@@ -1,0 +1,19 @@
+services:
+  inveztia-server:
+    image: ynoacamino/inveztiga-pb:latest
+    container_name: inveztiga-server
+    restart: unless-stopped
+    healthcheck:
+      disable: true
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=inveztiga-server.ynoacamino.site
+      - LETSENCRYPT_HOST=inveztiga-server.ynoacamino.site
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true

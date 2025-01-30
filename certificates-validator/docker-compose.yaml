@@ -1,0 +1,22 @@
+services:
+  certificates-validator-server:
+    image: ynoacamino/pocketbase-docker:latest
+    container_name: certificates-validator-server
+    restart: unless-stopped
+    healthcheck:
+      disable: true
+    env_file: .env
+    environment:
+      - VIRTUAL_HOST=certificates-validator-server.ynoacamino.site
+      - LETSENCRYPT_HOST=certificates-validator-server.ynoacamino.site
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    networks:
+      - web-services
+    volumes:
+      - ./pb_data/:/pb/pb_data/
+      - ./pb_migrations/:/pb/pb_migrations/
+
+networks:
+  web-services:
+    external: true
