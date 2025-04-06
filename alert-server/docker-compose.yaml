@@ -1,6 +1,6 @@
 services:
   alert-server:
-    image: ynoacamino/ynoacamino-alert:v0.12
+    image: ynoacamino/ynoacamino-alert:v0.15
     restart: unless-stopped
     container_name: alert-server
     healthcheck:

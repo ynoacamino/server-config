@@ -1,13 +1,13 @@
 services:
-  secrets-backend:
-    image: ynoacamino/ynoacamino-secrets-backend:v0.9
+  acm-panel:
+    image: ynoacamino/student-chapter-acm-page-panel:panel-v0.6
     restart: unless-stopped
-    container_name: secrets-backend
+    container_name: acm-panel
     healthcheck:
       disable: true
     environment:
-      - VIRTUAL_HOST=secrets-admin.ynoacamino.site
-      - LETSENCRYPT_HOST=secrets-admin.ynoacamino.site
+      - VIRTUAL_HOST=acm-panel.ynoacamino.site
+      - LETSENCRYPT_HOST=acm-panel.ynoacamino.site
       - VIRTUAL_PORT=8090
       - LETSENCRYPT_MAIL=ynoacamino@gmail.com
     volumes:

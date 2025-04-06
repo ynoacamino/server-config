@@ -20,6 +20,9 @@ services:
   postgres-museum:
     container_name: postgres-museum
     image: postgres:15
+    restart: unless-stopped
+    healthcheck:
+      disable: true
     environment:
       POSTGRES_USER: pguser
       POSTGRES_PASSWORD: pgpass
