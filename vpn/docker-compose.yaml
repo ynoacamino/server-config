@@ -1,0 +1,27 @@
+services:
+  vpn:
+    image: ghcr.io/wg-easy/wg-easy
+    restart: unless-stopped
+    container_name: vpn
+    healthcheck:
+      disable: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    environment:
+      - VIRTUAL_HOST=vpn.ynoacamino.site
+      - LETSENCRYPT_HOST=vpn.ynoacamino.site
+      - VIRTUAL_PORT=51821
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    env_file: .env
+    volumes:
+      - ./wireguard:/etc/wireguard
+    networks:
+      - web-services
+    ports:
+      - "51820:51820/udp"
+      - "51821:51821/tcp"
+
+networks:
+  web-services:
+    external: true
