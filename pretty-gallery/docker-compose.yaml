@@ -1,0 +1,18 @@
+services:
+  pretty-gallery:
+    image: ynoacamino/pretty-gallery:latest
+    restart: unless-stopped
+    container_name: pretty-gallery
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=love-sv.ynoacamino.site
+      - LETSENCRYPT_HOST=love-sv.ynoacamino.site
+      - VIRTUAL_PORT=8090
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true

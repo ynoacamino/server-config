@@ -1,0 +1,7 @@
+services:
+  stress:
+    image: alexeiled/stress-ng:latest
+    restart: unless-stopped
+    container_name: stress
+    entrypoint: /stress-ng
+    command: --cpu 4 --cpu-load 8

@@ -2,24 +2,24 @@ x-common:
     database: &db-environment
         # Do not remove the "&db-password" from the end of the line below, it is important
         # for Panel functionality.
-        MYSQL_PASSWORD: &db-password "11yenaro11"
-        MYSQL_ROOT_PASSWORD: "11yenaro11"
+        MYSQL_PASSWORD: &db-password ${MYSQL_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     panel: &panel-environment
         APP_URL: "https://panel.ynoacamino.site"
         APP_TIMEZONE: "UTC"
         APP_SERVICE_AUTHOR: "ynoacamino@gmail.com"
-        VIRTUAL_HOST: "panel.ynoacamino.site"
-        LETSENCRYPT_HOST: "panel.ynoacamino.site"
+        VIRTUAL_HOST: "panel.ynoacamino.site,dashboard.enderhost.online"
+        LETSENCRYPT_HOST: "panel.ynoacamino.site,dashboard.enderhost.online"
         LETSENCRYPT_EMAIL: "ynoacamino@gmail.com"
         VIRTUAL_PORT: "80"
     mail: &mail-environment
-        MAIL_FROM: "help-craft@ynoacamino.site"
-        MAIL_DRIVER: "smtp"
-        MAIL_HOST: "smtp.email.sa-valparaiso-1.oci.oraclecloud.com"
-        MAIL_PORT: "587"
-        MAIL_USERNAME: "ocid1.user.oc1..aaaaaaaakvyjeqxnnwccpw7udtgkcg2oof3sheu4kcuknbwme5hm5nb5cyeq@ocid1.tenancy.oc1..aaaaaaaaxjijtedpciu3tf3v2asza2bo7uo474ucbb5la4v75ehyyifbcl5q.fw.com"
-        MAIL_PASSWORD: "n4G[&8WnYXRKkC-r6$cJ"
-        MAIL_ENCRYPTION: "true"
+        MAIL_FROM: ${MAIL_FROM}
+        MAIL_DRIVER: ${MAIL_DRIVER}
+        MAIL_HOST: ${MAIL_HOST}
+        MAIL_PORT: ${MAIL_PORT}
+        MAIL_USERNAME: ${MAIL_USERNAME}
+        MAIL_PASSWORD: ${MAIL_PASSWORD}
+        MAIL_ENCRYPTION: ${MAIL_ENCRYPTION}
 
 #
 # ------------------------------------------------------------------------------------------

@@ -1,0 +1,19 @@
+services:
+  abogacia-frontend:
+    image: ynoacamino/blog-jurisprudencia-frontend:latest
+    restart: unless-stopped
+    container_name: abogacia-frontend
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=100100010001blog.ynoacamino.site
+      - LETSENCRYPT_HOST=100100010001blog.ynoacamino.site
+      - VIRTUAL_PORT=3000
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    env_file: .env
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true

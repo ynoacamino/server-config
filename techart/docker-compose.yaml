@@ -1,0 +1,22 @@
+services:
+  techart:
+    image: ynoacamino/techart-pixel-canvas-server:latest
+    restart: unless-stopped
+    container_name: techart
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=techart-server.ynoacamino.site
+      - LETSENCRYPT_HOST=techart-server.ynoacamino.site
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    volumes:
+      - ./db/:/app/db/
+      - ./backup/:/app/backup/
+    env_file: .env
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true

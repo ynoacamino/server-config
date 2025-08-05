@@ -1,0 +1,19 @@
+services:
+  alert-go:
+    image: ynoacamino/alert-go:latest
+    restart: unless-stopped
+    container_name: alert-go
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=alert-go.ynoacamino.site
+      - LETSENCRYPT_HOST=alert-go.ynoacamino.site
+      - VIRTUAL_PORT=8080
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    env_file: .env
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true

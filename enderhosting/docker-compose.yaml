@@ -1,0 +1,21 @@
+services:
+  enderhost-admin:
+    image: directus/directus:11.10.0
+    restart: unless-stopped
+    container_name: enderhost-admin
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=admin.enderhost.online
+      - LETSENCRYPT_HOST=admin.enderhost.online
+      - VIRTUAL_PORT=8055
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    volumes:
+      - ./data:/directus/data
+    env_file: .env
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true

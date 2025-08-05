@@ -1,0 +1,21 @@
+services:
+  abogacia-page:
+    image: ynoacamino/publicaciones-page-panel:latest
+    restart: unless-stopped
+    container_name: abogacia-page
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=blog-jurisprudencia.ynoacamino.site
+      - LETSENCRYPT_HOST=blog-jurisprudencia.ynoacamino.site
+      - VIRTUAL_PORT=8090
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    env_file: .env
+    volumes:
+      - ./data/:/pb/pb_data/
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true
