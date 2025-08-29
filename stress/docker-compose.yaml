@@ -4,4 +4,4 @@ services:
     restart: unless-stopped
     container_name: stress
     entrypoint: /stress-ng
-    command: --cpu 4 --cpu-load 8
+    command: --cpu 4 --cpu-load 40

@@ -1,0 +1,19 @@
+services:
+  beiaqeo:
+    image: ynoacamino/beiaqeo-pb:latest
+    restart: unless-stopped
+    container_name: beiaqeo
+    healthcheck:
+      disable: true
+    environment:
+      - VIRTUAL_HOST=beiaqeo.ynoacamino.site
+      - LETSENCRYPT_HOST=beiaqeo.ynoacamino.site
+      - VIRTUAL_PORT=8090
+      - LETSENCRYPT_MAIL=ynoacamino@gmail.com
+    env_file: .env
+    networks:
+      - web-services
+
+networks:
+  web-services:
+    external: true
